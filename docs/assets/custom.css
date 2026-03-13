@@ -909,6 +909,7 @@ article.md-content__inner {
 .md-copyright {
   color: rgba(0, 0, 0, 0.45);
   font-size: .64rem;
+  margin: auto 1.5rem;
 }
 
 .md-copyright__highlight {

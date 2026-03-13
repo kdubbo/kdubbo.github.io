@@ -1,5 +1,5 @@
 site_name: DSM - Dubbo Service Mesh for Kubernetes
-site_url: https://dubbo-kubernetes.github.io/dsm-docs/
+site_url: https://dubbo-kubernetes.github.io/
 use_directory_urls: true
 
 repo_name: dubbo-kubernetes
@@ -54,30 +54,27 @@ extra_javascript:
 nav:
   - 概述:
     - overview/index.md
-    - 入门: overview/getting_started.md
   - 概念（待补充）:
-      - 流量管理: concepts/traffic-management.md
+      - 交通管理: concepts/traffic-management.md
       - 安全: concepts/security.md
       - 可观测（开发中）: concepts/observability.md
   - 安装指南:
     - dubboctl: setup/install/dubboctl.md
     - helm: setup/install/helm.md
+  - SDK 与框架:
+    - SDK 应用接入: application/sdk/index.md
+    - gRPC 原生接入: application/framework/index.md
   - 任务:
-      - 流量管理:
-           - 路由规则:
-               - 流量切分: tasks/traffic/canary/canary.md
+      - 交通管理:
+           - 流量路由:
+               - 权重: tasks/traffic/canary/canary.md
            - Ingress:
                - Kubernetes Gateway API: tasks/traffic/ingress/gateway-api.md
       - 安全:
           - 双向 TLS: tasks/security/mtls.md
-      - 可观测（开发中）: tasks/observability/_index.md
+      - 可观测（开发中）: tasks/observability/index.md
   - 运维（待补充）: operation.md
   - 版本发布（待补充）: release.md
   - 参考（待补充）: reference.md
-
-extra:
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/apache/dubbo-kubernetes
 
 copyright: Copyright © 2026 The Dubbo Kubernetes Team.

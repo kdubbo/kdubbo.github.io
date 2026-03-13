@@ -1,6 +1,6 @@
-# DSM Documentation
+# Dubbo Service Mesh for Kubernetes Documentation
 
-这是 DSM 项目的文档网站，使用 MkDocs Material 主题构建。
+This is the documentation website for the [dubbo-kubernetes](https://github.com/apache/dubbo-kubernetes) project, built using the MkDocs Material theme.
 
 ```bash
 python3 -m mkdocs serve
