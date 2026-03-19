@@ -62,8 +62,8 @@ nav:
     - dubboctl: setup/install/dubboctl.md
     - helm: setup/install/helm.md
   - SDK 与框架:
-    - SDK 应用接入: application/sdk/index.md
-    - gRPC 原生接入: application/framework/index.md
+    - SDK（待开发）: application/sdk/index.md
+    - gRPC: application/framework/index.md
   - 任务:
       - 交通管理:
            - 流量路由:
@@ -74,7 +74,7 @@ nav:
           - 双向 TLS: tasks/security/mtls.md
       - 可观测（开发中）: tasks/observability/index.md
   - 运维（待补充）: operation.md
-  - 版本发布（待补充）: release.md
+  - 消息（待补充）: release.md
   - 参考（待补充）: reference.md
 
 copyright: Copyright © 2026 The Dubbo Kubernetes Team.

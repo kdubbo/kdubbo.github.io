@@ -105,9 +105,9 @@ code,
   color: #ffffff !important;
 }
 
-/* Inline code */
+/* Inline code - gray background */
 .md-typeset code {
-  background-color: #000000 !important;
+  background-color: #999999 !important;
   color: #ffffff !important;
   padding: 0.1em 0.4em;
   border-radius: 3px;
