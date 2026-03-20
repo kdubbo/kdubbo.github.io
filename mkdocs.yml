@@ -1,5 +1,5 @@
-site_name: DSM - Dubbo Inherent Mesh for Kubernetes
-site_url: https://dubbo-kubernetes.github.io/
+site_name: Dubbo Inherent Mesh for Kubernetes
+site_url: https://kdubbo.github.io/
 use_directory_urls: true
 
 repo_name: dubbo-kubernetes
@@ -9,7 +9,7 @@ theme:
   name: material
   language: zh
   custom_dir: overrides
-  favicon: assets/static/favicon.ico
+  favicon: assets/static/logo.ico
   logo: assets/static/logo.png
   font: false
   palette:
@@ -57,7 +57,7 @@ nav:
   - 概念（待补充）:
       - 交通管理: concepts/traffic-management.md
       - 安全: concepts/security.md
-      - 可观测（开发中）: concepts/observability.md
+      - 可观察性（开发中）: concepts/observability.md
   - 安装指南:
     - dubboctl: setup/install/dubboctl.md
     - helm: setup/install/helm.md
@@ -72,9 +72,9 @@ nav:
                - Kubernetes Gateway API: tasks/traffic/ingress/gateway-api.md
       - 安全:
           - 双向 TLS: tasks/security/mtls.md
-      - 可观测（开发中）: tasks/observability/index.md
+      - 可观察性（开发中）: tasks/observability/index.md
   - 运维（待补充）: operation.md
-  - 消息（待补充）: release.md
+  - 版本（待补充）: release.md
   - 参考（待补充）: reference.md
 
 copyright: Copyright © 2026 The Dubbo Kubernetes Team.

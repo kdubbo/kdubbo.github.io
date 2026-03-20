@@ -1,4 +1,4 @@
-# Dubbo Service Mesh for Kubernetes Documentation
+# Dubbo Inherent Mesh for Kubernetes Documentation
 
 This is the documentation website for the [dubbo-kubernetes](https://github.com/apache/dubbo-kubernetes) project, built using the MkDocs Material theme.
 
