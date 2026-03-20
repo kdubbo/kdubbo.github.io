@@ -1,0 +1,932 @@
+/* Import Claude's official fonts */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+/* ABCDiatype font (Claude's UI font) - fallback to similar sans-serif */
+@font-face {
+  font-family: 'ABCDiatype';
+  src: local('ABCDiatype'), local('Helvetica Neue'), local('Arial');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Charter font (Claude's content font) */
+@font-face {
+  font-family: 'Charter';
+  src: local('Charter'), local('Charter Regular'), local('Georgia');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Global font settings - using Claude's official fonts */
+:root {
+  --md-text-font: "Charter", "Georgia", "Times New Roman", serif;
+  --md-ui-font: "ABCDiatype", -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", sans-serif;
+  --md-code-font: "JetBrains Mono", "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, monospace;
+  
+  /* Soft and Fresh Color Palette */
+  --color-bg-primary: #F0F9FF;        /* 极浅天蓝 */
+  --color-bg-secondary: #E0F2FE;      /* 浅天蓝 */
+  --color-accent: #0EA5E9;            /* 天蓝强调色 */
+  --color-accent-light: #38BDF8;      /* 浅强调色 */
+  --color-accent-lighter: #BAE6FD;    /* 极浅强调色 */
+  --color-text-primary: #0F172A;      /* 主文字 - 深蓝灰 */
+  --color-text-secondary: #475569;    /* 次文字 - 中蓝灰 */
+  --color-border: #CBD5E1;            /* 边框色 */
+  --color-hover: #0284C7;             /* 悬停色 */
+}
+
+body {
+  font-family: var(--md-text-font);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Deep white with blue gradient from bottom-right corner */
+  background: radial-gradient(ellipse at bottom right, 
+    #D1E9F6 0%,
+    #E8F4F8 20%,
+    #F5FAFB 40%,
+    #FAFCFD 60%,
+    #FFFFFF 100%
+  );
+  background-attachment: fixed;
+  color: var(--color-text-primary);
+}
+
+/* Main content area with blue gradient background */
+.md-main {
+  background: transparent !important;
+}
+
+/* Content container - completely transparent, let body gradient show through */
+.md-content {
+  background: transparent !important;
+}
+
+/* Sidebar - completely transparent, no container box */
+.md-sidebar {
+  background: transparent !important;
+}
+
+.md-sidebar--primary {
+  background: transparent !important;
+}
+
+.md-sidebar--secondary {
+  background: transparent !important;
+}
+
+/* Remove all container backgrounds from Material theme */
+.md-container {
+  background: transparent !important;
+}
+
+.md-main__inner {
+  background: transparent !important;
+}
+
+/* UI elements use ABCDiatype font */
+.md-header,
+.md-tabs,
+.md-nav,
+.md-footer,
+button,
+.md-button {
+  font-family: var(--md-ui-font);
+}
+
+/* Code blocks - Pure black background with pure white text */
+.highlight,
+.highlighttable,
+pre,
+code,
+.md-typeset pre,
+.md-typeset code,
+.md-typeset pre > code {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+/* Inline code - gray background */
+.md-typeset code {
+  background-color: #999999 !important;
+  color: #ffffff !important;
+  padding: 0.1em 0.4em;
+  border-radius: 3px;
+  font-size: 0.85em;
+  font-family: var(--md-code-font);
+}
+
+/* Code block container */
+.md-typeset pre {
+  background-color: #000000 !important;
+  border-radius: 6px;
+  padding: 1em;
+  overflow-x: auto;
+}
+
+.md-typeset pre > code {
+  background-color: transparent !important;
+  color: #ffffff !important;
+  padding: 0;
+  font-family: var(--md-code-font);
+  font-size: 0.9em;
+  line-height: 1.6;
+}
+
+/* Syntax highlighting - white text with gray comments on black background */
+.highlight .hll { background-color: #000000 !important; }
+
+/* Comments - gray color */
+.highlight .c { color: #999999 !important; } /* Comment */
+.highlight .cm { color: #999999 !important; } /* Comment.Multiline */
+.highlight .cp { color: #999999 !important; } /* Comment.Preproc */
+.highlight .c1 { color: #999999 !important; } /* Comment.Single */
+.highlight .cs { color: #999999 !important; } /* Comment.Special */
+
+/* All other code elements - white color */
+.highlight .err { color: #ffffff !important; } /* Error */
+.highlight .k { color: #ffffff !important; } /* Keyword */
+.highlight .o { color: #ffffff !important; } /* Operator */
+.highlight .gd { color: #ffffff !important; } /* Generic.Deleted */
+.highlight .ge { color: #ffffff !important; } /* Generic.Emph */
+.highlight .gr { color: #ffffff !important; } /* Generic.Error */
+.highlight .gh { color: #ffffff !important; } /* Generic.Heading */
+.highlight .gi { color: #ffffff !important; } /* Generic.Inserted */
+.highlight .go { color: #ffffff !important; } /* Generic.Output */
+.highlight .gp { color: #ffffff !important; } /* Generic.Prompt */
+.highlight .gs { color: #ffffff !important; } /* Generic.Strong */
+.highlight .gu { color: #ffffff !important; } /* Generic.Subheading */
+.highlight .gt { color: #ffffff !important; } /* Generic.Traceback */
+.highlight .kc { color: #ffffff !important; } /* Keyword.Constant */
+.highlight .kd { color: #ffffff !important; } /* Keyword.Declaration */
+.highlight .kn { color: #ffffff !important; } /* Keyword.Namespace */
+.highlight .kp { color: #ffffff !important; } /* Keyword.Pseudo */
+.highlight .kr { color: #ffffff !important; } /* Keyword.Reserved */
+.highlight .kt { color: #ffffff !important; } /* Keyword.Type */
+.highlight .m { color: #ffffff !important; } /* Literal.Number */
+.highlight .s { color: #ffffff !important; } /* Literal.String */
+.highlight .na { color: #ffffff !important; } /* Name.Attribute */
+.highlight .nb { color: #ffffff !important; } /* Name.Builtin */
+.highlight .nc { color: #ffffff !important; } /* Name.Class */
+.highlight .no { color: #ffffff !important; } /* Name.Constant */
+.highlight .nd { color: #ffffff !important; } /* Name.Decorator */
+.highlight .ni { color: #ffffff !important; } /* Name.Entity */
+.highlight .ne { color: #ffffff !important; } /* Name.Exception */
+.highlight .nf { color: #ffffff !important; } /* Name.Function */
+.highlight .nl { color: #ffffff !important; } /* Name.Label */
+.highlight .nn { color: #ffffff !important; } /* Name.Namespace */
+.highlight .nt { color: #ffffff !important; } /* Name.Tag */
+.highlight .nv { color: #ffffff !important; } /* Name.Variable */
+.highlight .ow { color: #ffffff !important; } /* Operator.Word */
+.highlight .w { color: #ffffff !important; } /* Text.Whitespace */
+.highlight .mf { color: #ffffff !important; } /* Literal.Number.Float */
+.highlight .mh { color: #ffffff !important; } /* Literal.Number.Hex */
+.highlight .mi { color: #ffffff !important; } /* Literal.Number.Integer */
+.highlight .mo { color: #ffffff !important; } /* Literal.Number.Oct */
+.highlight .sb { color: #ffffff !important; } /* Literal.String.Backtick */
+.highlight .sc { color: #ffffff !important; } /* Literal.String.Char */
+.highlight .sd { color: #ffffff !important; } /* Literal.String.Doc */
+.highlight .s2 { color: #ffffff !important; } /* Literal.String.Double */
+.highlight .se { color: #ffffff !important; } /* Literal.String.Escape */
+.highlight .sh { color: #ffffff !important; } /* Literal.String.Heredoc */
+.highlight .si { color: #ffffff !important; } /* Literal.String.Interpol */
+.highlight .sx { color: #ffffff !important; } /* Literal.String.Other */
+.highlight .sr { color: #ffffff !important; } /* Literal.String.Regex */
+.highlight .s1 { color: #ffffff !important; } /* Literal.String.Single */
+.highlight .ss { color: #ffffff !important; } /* Literal.String.Symbol */
+.highlight .bp { color: #ffffff !important; } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #ffffff !important; } /* Name.Variable.Class */
+.highlight .vg { color: #ffffff !important; } /* Name.Variable.Global */
+.highlight .vi { color: #ffffff !important; } /* Name.Variable.Instance */
+.highlight .il { color: #ffffff !important; } /* Literal.Number.Integer.Long */
+
+/* Additional overrides to ensure all text in code blocks is white or gray */
+.highlight span { color: #ffffff !important; }
+.highlight .c, .highlight .cm, .highlight .cp, .highlight .c1, .highlight .cs { color: #999999 !important; }
+
+/* Force all code content to be white by default */
+.md-typeset pre code *,
+.md-typeset pre code span {
+  color: #ffffff !important;
+}
+
+/* Override for comment spans specifically */
+.md-typeset pre code .c,
+.md-typeset pre code .cm,
+.md-typeset pre code .cp,
+.md-typeset pre code .c1,
+.md-typeset pre code .cs {
+  color: #999999 !important;
+}
+
+/* Code copy button styling */
+.md-clipboard {
+  color: #ffffff !important;
+}
+
+.md-clipboard:hover {
+  color: #cccccc !important;
+}
+
+/* Admonitions - smaller font */
+.md-typeset .admonition,
+.md-typeset details {
+  border-left: 4px solid var(--color-accent);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(14, 165, 233, 0.1);
+  padding: 1rem 1.2rem;
+  margin: 1.5em 0;
+  background: rgba(240, 249, 255, 0.8);
+  backdrop-filter: blur(10px);
+  font-size: 0.8125rem;
+}
+
+.md-typeset .admonition-title,
+.md-typeset summary {
+  color: var(--color-text-primary) !important;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+/* Header styling - 75% white + 25% light blue gradient */
+.md-header {
+  background: linear-gradient(90deg, 
+    #FFFFFF 0%,
+    #FAFCFE 50%,
+    #F0F8FF 70%,
+    #E0F0FA 75%,
+    #BAE6FD 100%
+  ) !important;
+  box-shadow: 0 2px 10px rgba(186, 230, 253, 0.3);
+}
+
+/* Header text - adaptive color for white background */
+.md-header__title,
+.md-header__button,
+.md-header a {
+  color: #374151 !important;
+  font-size: 0.85rem;
+}
+
+/* Header hover - darker shade */
+.md-header a:hover,
+.md-header__button:hover {
+  color: #1F2937 !important;
+}
+
+/* GitHub icon in header - adaptive color */
+.md-header .md-source {
+  color: #374151 !important;
+}
+
+.md-header .md-source:hover {
+  color: #1F2937 !important;
+}
+
+/* Navigation tabs - 75% white + 25% light blue gradient */
+.md-tabs {
+  background: linear-gradient(90deg, 
+    #FFFFFF 0%,
+    #FAFCFE 50%,
+    #F0F8FF 70%,
+    #E0F0FA 75%,
+    #BAE6FD 100%
+  ) !important;
+  border-bottom: none;
+}
+
+/* Navigation tabs inner container - add left padding */
+.md-tabs__inner {
+  padding-left: 3rem !important;
+  margin-left: 0 !important;
+}
+
+/* Navigation tabs list - add left padding */
+.md-tabs__list {
+  padding-left: 2rem !important;
+  margin-left: 0 !important;
+}
+
+/* Navigation tabs text - adaptive color */
+.md-tabs__link {
+  color: #374151 !important;
+  font-size: 0.75rem;
+}
+
+/* Navigation tabs hover - darker */
+.md-tabs__link:hover {
+  color: #1F2937 !important;
+  background-color: rgba(55, 65, 81, 0.05);
+}
+
+.md-tabs__link--active {
+  color: #1F2937 !important;
+  background-color: rgba(55, 65, 81, 0.1);
+  font-weight: 600;
+}
+
+/* Search box - gray placeholder */
+.md-search__input {
+  background-color: rgba(240, 249, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(14, 165, 233, 0.3);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  font-size: 0.8125rem;
+}
+
+.md-search__input:focus {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
+}
+
+.md-search__input::placeholder {
+  color: #9CA3AF !important;
+}
+
+/* Links - modern accent color */
+.md-typeset a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-weight: 500;
+}
+
+.md-typeset a:hover {
+  color: var(--color-hover);
+  text-decoration: underline;
+}
+
+/* Tables - smaller font */
+.md-typeset table:not([class]) {
+  border: 1px solid rgba(14, 165, 233, 0.2);
+  border-radius: 8px;
+  font-size: 0.8125rem;
+  font-family: var(--md-ui-font);
+  overflow: hidden;
+  background: rgba(240, 249, 255, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+.md-typeset table:not([class]) th {
+  background: rgba(14, 165, 233, 0.15);
+  font-weight: 600;
+  color: var(--color-text-primary) !important;
+  font-family: var(--md-ui-font);
+  font-size: 0.8125rem;
+  border-bottom: 2px solid var(--color-accent);
+}
+
+.md-typeset table:not([class]) td {
+  font-family: var(--md-text-font);
+  color: var(--color-text-primary) !important;
+  font-size: 0.8125rem;
+  border-bottom: 1px solid rgba(14, 165, 233, 0.1);
+}
+
+.md-typeset table:not([class]) tr:hover {
+  background: rgba(14, 165, 233, 0.05);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Better readability - smaller font sizes */
+.md-typeset {
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  font-family: var(--md-text-font);
+  color: var(--color-text-primary) !important;
+}
+
+.md-typeset h1 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-family: var(--md-ui-font);
+  color: var(--color-text-primary) !important;
+  font-size: 1.5rem;
+  margin-top: 0;
+}
+
+.md-typeset h2 {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  font-family: var(--md-ui-font);
+  color: var(--color-text-primary) !important;
+  font-size: 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.3rem;
+}
+
+.md-typeset h3,
+.md-typeset h4,
+.md-typeset h5,
+.md-typeset h6 {
+  font-weight: 600;
+  font-family: var(--md-ui-font);
+  color: var(--color-text-primary) !important;
+}
+
+.md-typeset h3 {
+  font-size: 1rem;
+}
+
+.md-typeset h4 {
+  font-size: 0.9375rem;
+}
+
+.md-typeset h5,
+.md-typeset h6 {
+  font-size: 0.875rem;
+}
+
+/* Paragraphs - smaller font */
+.md-typeset p {
+  font-family: var(--md-text-font);
+  color: var(--color-text-primary) !important;
+  font-size: 0.8125rem;
+}
+
+/* List items - smaller font */
+.md-typeset li {
+  color: var(--color-text-primary) !important;
+  font-size: 0.8125rem;
+}
+
+/* Navigation - unified color scheme for all items */
+/* Base navigation link style - consistent gray color for all items */
+.md-nav__link {
+  color: #6B7280 !important;
+  font-family: var(--md-ui-font);
+  font-size: 0.6875rem;
+  transition: all 0.2s ease;
+  padding-left: 0.6rem;
+  font-weight: 500;
+}
+
+/* Top-level navigation items - no indent */
+.md-nav--primary > .md-nav__list > .md-nav__item > .md-nav__link {
+  color: #6B7280 !important;
+  font-weight: 600;
+  background: transparent;
+  border-left: none;
+  padding-left: 0.6rem !important;
+  font-size: 0.6875rem;
+}
+
+/* Section headers (like "流量管理", "安全", "可观测性") - NO indent, keep at left */
+.md-nav__item--section > .md-nav__link {
+  color: #6B7280 !important;
+  font-weight: 700;
+  background: transparent;
+  border-left: none;
+  padding-left: 0.6rem !important;
+  font-size: 0.6875rem;
+  margin-bottom: 0.25rem;
+}
+
+/* First level children under sections - indented */
+.md-nav__item--section > .md-nav > .md-nav__list > .md-nav__item > .md-nav__link {
+  color: #6B7280 !important;
+  padding-left: 1.2rem !important;
+  margin-left: 0 !important;
+  font-weight: 500;
+  font-size: 0.6875rem;
+}
+
+/* Second level nested items - more indentation */
+.md-nav__item--section > .md-nav > .md-nav__list > .md-nav__item > .md-nav > .md-nav__list > .md-nav__item > .md-nav__link {
+  color: #6B7280 !important;
+  padding-left: 1.8rem !important;
+  margin-left: 0 !important;
+  font-weight: 400;
+  font-size: 0.65rem;
+}
+
+/* Third level nested items - even more indentation */
+.md-nav__item--section > .md-nav > .md-nav__list > .md-nav__item > .md-nav > .md-nav__list > .md-nav__item > .md-nav > .md-nav__list > .md-nav__item > .md-nav__link {
+  color: #6B7280 !important;
+  padding-left: 1.8rem !important;
+  margin-left: 0 !important;
+  font-weight: 400;
+  font-size: 0.625rem;
+}
+
+/* Active parent items - keep same gray color, NO indent */
+.md-nav__item--active > .md-nav__link {
+  color: #6B7280 !important;
+  font-weight: 600;
+  background: transparent;
+  border-left: none;
+  padding-left: 0.6rem !important;
+  font-size: 0.6875rem;
+}
+
+/* Active section headers - NO indent */
+.md-nav__item--section.md-nav__item--active > .md-nav__link {
+  padding-left: 0.6rem !important;
+}
+
+/* Only the current page (with aria-current) gets the blue indicator */
+.md-nav__link[aria-current="page"] {
+  color: var(--color-accent) !important;
+  font-weight: 600;
+  background: rgba(14, 165, 233, 0.1);
+  border-left: 3px solid var(--color-accent);
+}
+
+/* Hover state - blue accent */
+.md-nav__link:hover {
+  color: var(--color-accent) !important;
+  background: rgba(14, 165, 233, 0.05);
+}
+
+/* Navigation title */
+.md-nav__title {
+  color: #6B7280 !important;
+  font-size: 0.6875rem;
+  font-weight: 600;
+}
+
+/* Left sidebar navigation - smaller font */
+.md-sidebar--primary .md-nav__link {
+  font-size: 0.6875rem;
+}
+
+/* Right sidebar (TOC) - smaller font */
+.md-sidebar--secondary .md-nav__link {
+  font-size: 0.6875rem;
+}
+
+.md-sidebar--secondary .md-nav__title {
+  font-size: 0.6875rem;
+}
+
+/* Footer - 75% white + 25% light blue gradient */
+.md-footer {
+  background: linear-gradient(90deg, 
+    #FFFFFF 0%,
+    #FAFCFE 50%,
+    #F0F8FF 70%,
+    #E0F0FA 75%,
+    #BAE6FD 100%
+  ) !important;
+  box-shadow: 0 -2px 10px rgba(186, 230, 253, 0.3);
+}
+
+.md-footer-meta {
+  background: linear-gradient(90deg, 
+    #FFFFFF 0%,
+    #FAFCFE 50%,
+    #F0F8FF 70%,
+    #E0F0FA 75%,
+    #BAE6FD 100%
+  ) !important;
+}
+
+.md-footer__inner {
+  background: transparent !important;
+}
+
+/* Footer text color - same as header for consistency */
+.md-footer__link,
+.md-footer__title,
+.md-footer-meta__inner,
+.md-footer a {
+  color: #374151 !important;
+  font-size: 0.8125rem;
+}
+
+.md-footer__link:hover,
+.md-footer a:hover {
+  color: #1F2937 !important;
+}
+
+/* Footer GitHub icon - same as header */
+.md-footer .md-social__link {
+  color: #374151 !important;
+}
+
+.md-footer .md-social__link:hover {
+  color: #1F2937 !important;
+}
+
+/* Footer copyright text */
+.md-footer-copyright {
+  color: #374151 !important;
+}
+
+.md-footer-copyright__highlight {
+  color: #374151 !important;
+}
+
+/* Buttons - smaller font */
+.md-button {
+  background: var(--color-accent);
+  border: none;
+  color: #FFFFFF;
+  transition: all 0.3s ease;
+  font-size: 0.8125rem;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.md-button:hover {
+  background: var(--color-hover);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  transform: translateY(-1px);
+}
+
+/* Dark mode adjustments with blue theme */
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color: transparent;
+  --md-default-fg-color: #e0e0e0;
+}
+
+[data-md-color-scheme="slate"] body {
+  background: linear-gradient(135deg, 
+    #0A1929 0%, 
+    #1A2F4A 50%, 
+    #0A1929 100%
+  );
+}
+
+[data-md-color-scheme="slate"] .md-main {
+  background: transparent !important;
+}
+
+[data-md-color-scheme="slate"] .md-content {
+  background: transparent !important;
+}
+
+[data-md-color-scheme="slate"] .md-typeset a {
+  color: var(--color-medium);
+}
+
+[data-md-color-scheme="slate"] .md-typeset a:hover {
+  color: var(--color-light);
+}
+
+[data-md-color-scheme="slate"] .md-header {
+  background: linear-gradient(90deg, 
+    #1A2F4A 0%, 
+    #2A4F7A 50%, 
+    #1A2F4A 100%
+  );
+}
+
+[data-md-color-scheme="slate"] .md-header__title,
+[data-md-color-scheme="slate"] .md-header__button,
+[data-md-color-scheme="slate"] .md-header a {
+  color: #FFFFFF !important;
+}
+
+[data-md-color-scheme="slate"] .md-header a:hover,
+[data-md-color-scheme="slate"] .md-header__button:hover {
+  color: var(--color-hover-yellow) !important;
+}
+
+[data-md-color-scheme="slate"] .md-sidebar {
+  background: transparent !important;
+}
+
+[data-md-color-scheme="slate"] .md-nav__link {
+  color: #e0e0e0;
+}
+
+[data-md-color-scheme="slate"] .md-sidebar__inner {
+  background: transparent !important;
+}
+
+[data-md-color-scheme="slate"] .md-content__inner {
+  background: transparent !important;
+}
+
+/* Ensure code blocks remain pure black/white in dark mode too */
+[data-md-color-scheme="slate"] .highlight,
+[data-md-color-scheme="slate"] .highlighttable,
+[data-md-color-scheme="slate"] pre,
+[data-md-color-scheme="slate"] code,
+[data-md-color-scheme="slate"] .md-typeset pre,
+[data-md-color-scheme="slate"] .md-typeset code {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+/* Content sections - no container box, blue gradient background */
+.md-typeset > * {
+  position: relative;
+}
+
+.md-content__inner {
+  background: transparent !important;
+  padding: 2rem;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+[data-md-color-scheme="slate"] .md-content__inner {
+  background: transparent !important;
+}
+
+/* Remove all white/transparent container boxes */
+.md-sidebar__inner {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.md-nav--primary {
+  background: transparent !important;
+}
+
+.md-nav--secondary {
+  background: transparent !important;
+}
+
+/* Table of contents (right sidebar) - no container */
+.md-sidebar--secondary {
+  background: transparent !important;
+}
+
+.md-sidebar--secondary .md-sidebar__scrollwrap {
+  background: transparent !important;
+}
+
+/* Left sidebar - no container */
+.md-sidebar--primary {
+  background: transparent !important;
+}
+
+.md-sidebar--primary .md-sidebar__scrollwrap {
+  background: transparent !important;
+}
+
+/* Main content area - completely transparent */
+.md-content__inner > * {
+  background: transparent !important;
+}
+
+/* Article container - no background */
+article.md-content__inner {
+  background: transparent !important;
+}
+
+/* Remove any Material theme default backgrounds */
+.md-typeset .md-content__inner {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* Force remove white backgrounds from navigation */
+.md-nav {
+  background: transparent !important;
+}
+
+.md-nav__list {
+  background: transparent !important;
+}
+
+.md-nav__item {
+  background: transparent !important;
+}
+
+/* Remove white background from TOC */
+.md-nav--secondary .md-nav__title {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Remove all default Material backgrounds */
+[data-md-color-primary="teal"] {
+  --md-default-bg-color: transparent;
+}
+
+/* Override Material's default white backgrounds */
+.md-sidebar__scrollwrap::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+/* Scrollbar styling - fixed gray colors */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(203, 213, 225, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #94A3B8;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Right sidebar scrollbar - fixed gray */
+.md-sidebar--secondary .md-sidebar__scrollwrap::-webkit-scrollbar-thumb {
+  background: #94A3B8 !important;
+}
+
+.md-sidebar--secondary .md-sidebar__scrollwrap::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8 !important;
+}
+
+/* Maximize content area width - remove constraints */
+.md-grid {
+  max-width: none !important;
+  padding: 0 !important;
+}
+
+.md-main__inner {
+  max-width: none !important;
+  margin: 0 !important;
+}
+
+.md-content {
+  max-width: none !important;
+}
+
+.md-content__inner {
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 2rem 5% !important;
+  width: auto !important;
+}
+
+/* Minimize sidebar widths to maximize content space */
+@media screen and (min-width: 76.25em) {
+  .md-sidebar--primary {
+    width: 10rem !important;
+  }
+
+  .md-sidebar--secondary {
+    width: 13rem !important;
+  }
+
+  .md-sidebar {
+    flex-shrink: 0;
+  }
+}
+
+/* Adjust content margins for narrower sidebars */
+@media screen and (min-width: 60em) {
+  .md-content {
+    margin-left: 10rem;
+  }
+}
+
+@media screen and (min-width: 76.25em) {
+  .md-content {
+    margin-left: 4rem;
+    margin-right: 6rem;
+  }
+}
+
+.md-tabs {
+  width: 100%;
+}
+
+.md-tabs__inner {
+  margin-left: 0 !important;
+  padding-left: 3rem !important;
+}
+
+.md-tabs__list {
+  padding-left: 2rem !important;
+  margin-left: 0 !important;
+}
+
+.md-sidebar__scrollwrap {
+  padding-left: 1.25rem !important;
+}
+
+.md-copyright {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: .64rem;
+  margin: auto 1.5rem;
+}
+
+.md-copyright__highlight {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+
+.md-footer__link, .md-footer__title, .md-footer-meta__inner, .md-footer a {
+  color: #374151 !important;
+  font-size: 0.595rem;
+}
+
+.md-header .md-source {
+  color: #797f88 !important;
+}
+
+.md-header a {
+  color: #374151 !important;
+  font-size: 0.65rem;
+}
