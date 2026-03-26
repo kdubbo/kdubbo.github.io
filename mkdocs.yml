@@ -54,27 +54,25 @@ extra_javascript:
 nav:
   - 概述:
     - overview/index.md
-  - 概念（待补充）:
-      - 交通管理: concepts/traffic-management.md
+  - 概念:
+      - 流量管理: concepts/traffic-management.md
       - 安全: concepts/security.md
-      - 可观察性（开发中）: concepts/observability.md
+      - 可观察性: concepts/observability.md
   - 安装指南:
     - dubboctl: setup/install/dubboctl.md
     - helm: setup/install/helm.md
-  - SDK 与框架:
-    - SDK（待开发）: application/sdk/index.md
-    - gRPC: application/framework/index.md
+  - 嵌入程序: application/embed/index.md
   - 任务:
-      - 交通管理:
+      - 流量管理:
            - 流量路由:
                - 权重: tasks/traffic/canary/canary.md
            - Ingress:
                - Kubernetes Gateway API: tasks/traffic/ingress/gateway-api.md
       - 安全:
           - 双向 TLS: tasks/security/mtls.md
-      - 可观察性（开发中）: tasks/observability/index.md
-  - 运维（待补充）: operation.md
-  - 版本（待补充）: release.md
-  - 参考（待补充）: reference.md
+      - 可观察性: tasks/observability/index.md
+  - 运维（待补）: operation.md
+  - 版本（待补）: latest/release/release.md
+  - 参考（待补）: reference.md
 
-copyright: Copyright © 2026 The Dubbo Kubernetes Team.
+copyright: Copyright © 2026 The ADK Team.

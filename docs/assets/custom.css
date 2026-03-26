@@ -22,6 +22,10 @@
   --md-text-font: "Charter", "Georgia", "Times New Roman", serif;
   --md-ui-font: "ABCDiatype", -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", sans-serif;
   --md-code-font: "JetBrains Mono", "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, monospace;
+
+  /* Override Material theme sidebar widths */
+  --md-sidebar-width: 11rem;
+  --md-sidebar-width--secondary: 11rem;
   
   /* Soft and Fresh Color Palette */
   --color-bg-primary: #F0F9FF;        /* 极浅天蓝 */
@@ -93,47 +97,60 @@ button,
   font-family: var(--md-ui-font);
 }
 
-/* Code blocks - Pure black background with pure white text */
+/* Code blocks - modern dark background with better contrast */
 .highlight,
 .highlighttable,
-pre,
-code,
 .md-typeset pre,
-.md-typeset code,
 .md-typeset pre > code {
-  background-color: #000000 !important;
-  color: #ffffff !important;
+  background: linear-gradient(160deg, #0b1220 0%, #0f172a 55%, #111827 100%) !important;
+  color: #e6edf3 !important;
 }
 
-/* Inline code - gray background */
+/* Inline code - light background like reference style */
 .md-typeset code {
-  background-color: #999999 !important;
-  color: #ffffff !important;
-  padding: 0.1em 0.4em;
-  border-radius: 3px;
+  background-color: #ECEFF3 !important;
+  color: #2B3D5B !important;
+  padding: 0.1em 0.38em;
+  border-radius: 4px;
   font-size: 0.85em;
+  font-weight: 500;
   font-family: var(--md-code-font);
 }
 
 /* Code block container */
+.md-typeset .highlight,
+.md-typeset .highlighttable,
 .md-typeset pre {
-  background-color: #000000 !important;
-  border-radius: 6px;
-  padding: 1em;
+  width: 100%;
+  max-width: none;
+  margin: 1rem 0 !important;
+}
+
+.md-typeset pre {
+  border-radius: 10px;
+  padding: 0.95rem 1.1rem;
   overflow-x: auto;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.28);
+}
+
+.md-typeset .highlight > pre,
+.md-typeset .highlighttable > pre {
+  width: 100%;
+  margin: 0 !important;
 }
 
 .md-typeset pre > code {
   background-color: transparent !important;
-  color: #ffffff !important;
+  color: #e6edf3 !important;
   padding: 0;
   font-family: var(--md-code-font);
-  font-size: 0.9em;
+  font-size: 0.86em;
   line-height: 1.6;
 }
 
-/* Syntax highlighting - white text with gray comments on black background */
-.highlight .hll { background-color: #000000 !important; }
+/* Syntax highlighting - white text with gray comments on dark background */
+.highlight .hll { background-color: transparent !important; }
 
 /* Comments - gray color */
 .highlight .c { color: #999999 !important; } /* Comment */
@@ -388,15 +405,16 @@ code,
   background: rgba(14, 165, 233, 0.05);
 }
 
-/* Smooth scrolling */
+/* Smooth scrolling + global font size restore */
 html {
+  font-size: 108%;
   scroll-behavior: smooth;
 }
 
-/* Better readability - smaller font sizes */
+/* Better readability - balanced font sizes */
 .md-typeset {
-  font-size: 0.8125rem;
-  line-height: 1.7;
+  font-size: 0.9rem;
+  line-height: 1.72;
   font-family: var(--md-text-font);
   color: var(--color-text-primary) !important;
 }
@@ -704,15 +722,13 @@ html {
   background: transparent !important;
 }
 
-/* Ensure code blocks remain pure black/white in dark mode too */
+/* Ensure code blocks keep the same style in dark mode */
 [data-md-color-scheme="slate"] .highlight,
 [data-md-color-scheme="slate"] .highlighttable,
-[data-md-color-scheme="slate"] pre,
-[data-md-color-scheme="slate"] code,
 [data-md-color-scheme="slate"] .md-typeset pre,
-[data-md-color-scheme="slate"] .md-typeset code {
-  background-color: #000000 !important;
-  color: #ffffff !important;
+[data-md-color-scheme="slate"] .md-typeset pre > code {
+  background: linear-gradient(160deg, #0b1220 0%, #0f172a 55%, #111827 100%) !important;
+  color: #e6edf3 !important;
 }
 
 /* Content sections - no container box, blue gradient background */
@@ -722,7 +738,6 @@ html {
 
 .md-content__inner {
   background: transparent !important;
-  padding: 2rem;
   box-shadow: none !important;
   border: none !important;
 }
@@ -839,52 +854,59 @@ article.md-content__inner {
 
 /* Maximize content area width - remove constraints */
 .md-grid {
-  max-width: none !important;
+  max-width: 100% !important;
   padding: 0 !important;
 }
 
 .md-main__inner {
-  max-width: none !important;
+  max-width: 100% !important;
   margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
 }
 
 .md-content {
   max-width: none !important;
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
 }
 
 .md-content__inner {
   max-width: none !important;
   margin: 0 !important;
-  padding: 2rem 5% !important;
-  width: auto !important;
+  padding: 2rem 2.5rem !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
-/* Minimize sidebar widths to maximize content space */
+/* Sidebar widths */
 @media screen and (min-width: 76.25em) {
   .md-sidebar--primary {
-    width: 10rem !important;
+    width: 11rem !important;
   }
 
   .md-sidebar--secondary {
-    width: 13rem !important;
+    width: 11rem !important;
   }
 
   .md-sidebar {
-    flex-shrink: 0;
+    flex-shrink: 0 !important;
   }
 }
 
-/* Adjust content margins for narrower sidebars */
+/* Remove content margins - sidebars handled by flex layout */
 @media screen and (min-width: 60em) {
   .md-content {
-    margin-left: 10rem;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
   }
 }
 
 @media screen and (min-width: 76.25em) {
   .md-content {
-    margin-left: 4rem;
-    margin-right: 6rem;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
   }
 }
 
