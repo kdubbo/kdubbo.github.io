@@ -189,6 +189,60 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
+  document.querySelectorAll('.md-search__input').forEach(input => {
+    input.removeAttribute('required');
+    input.setAttribute('placeholder', '');
+  });
+
+  document.querySelectorAll('.md-search').forEach(search => {
+    const input = search.querySelector('.md-search__input');
+    const trigger = search.querySelector('.md-search__icon[for="__search"]');
+    const reset = search.querySelector('.md-search__options button[type="reset"]');
+
+    if (!input || !trigger) {
+      return;
+    }
+
+    const openSearch = event => {
+      if (event) {
+        event.preventDefault();
+      }
+
+      search.classList.add('mesh-search-open');
+      input.removeAttribute('required');
+      input.setAttribute('placeholder', '');
+      window.requestAnimationFrame(() => input.focus({ preventScroll: true }));
+    };
+
+    const closeSearch = () => {
+      input.value = '';
+      input.blur();
+      search.classList.remove('mesh-search-open');
+    };
+
+    trigger.addEventListener('click', openSearch);
+    input.addEventListener('focus', () => search.classList.add('mesh-search-open'));
+
+    if (reset) {
+      reset.addEventListener('click', event => {
+        event.preventDefault();
+        closeSearch();
+      });
+    }
+
+    search.addEventListener('keydown', event => {
+      if (event.key === 'Escape') {
+        closeSearch();
+      }
+    });
+
+    document.addEventListener('click', event => {
+      if (!search.contains(event.target) && !input.value) {
+        search.classList.remove('mesh-search-open');
+      }
+    });
+  });
+
   const codeBlocks = document.querySelectorAll('pre code');
   codeBlocks.forEach(block => {
     block.style.backgroundColor = '#000000';

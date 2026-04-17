@@ -1,6 +1,5 @@
 > This project is in the early design and experimental phase. Standard capabilities will continue to be refined and supported.
 
-# Introduction
 Dubbo Inherent Mesh is a proxyless model introduced in 2025. In this model, the control plane sends policies directly to gRPC services through xDS, enabling direct communication with gRPC services.
 
 The Dubbo agent initializes communication with the control plane. The agent does not receive application traffic as a data-plane proxy; it retrieves and rotates the certificates used by data-plane traffic.
@@ -8,7 +7,7 @@ The Dubbo agent initializes communication with the control plane. The agent does
 ## Architecture Overview
 
 <p align="center">
-  <img src="../static/architecture.svg" width="400">
+  <img src="../../static/architecture.svg" width="400">
 </p>
 
 ## Quick Start

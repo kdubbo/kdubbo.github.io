@@ -68,8 +68,9 @@ plugins:
           site_name: Dubbo Inherent Mesh for Kubernetes
           nav_translations:
             Home: 首页
-            Concepts: 概念
+            Concepts: 概述
             Overview: 概述
+            Basic Concepts: 基本概念
             Introduction: 引言
             Traffic Management: 流量管理
             Security: 安全
@@ -87,9 +88,9 @@ plugins:
           build: true
           site_name: Dubbo Inherent Mesh for Kubernetes
           nav_translations:
-            概念: Concepts
             概述: Overview
             引言: Introduction
+            基本概念: Basic Concepts
             流量管理: Traffic Management
             安全: Security
             可观察性: Observability
@@ -103,24 +104,23 @@ plugins:
             参考: Reference
 
 extra_css:
-  - assets/custom.css?v=20260417-header-controls
+  - assets/custom.css?v=20260417-toc-readable-spacing
 
 extra_javascript:
-  - assets/custom.js?v=20260417-header-controls
+  - assets/custom.js?v=20260417-search-click-open
 
 nav:
   - Home: index.md
-  - 概念:
-      - 概述:
-          - 引言: overview/index.md
-      - 概念:
+  - 概述:
+      - 引言: overview/index.md
+      - 基本概念:
           - 流量管理: concepts/traffic-management.md
           - 安全: concepts/security.md
           - 可观察性: concepts/observability.md
   - 安装:
       - Dubboctl: setup/install/dubboctl.md
       - Helm: setup/install/helm.md
-  - 嵌入程序: application/embed/index.md
+      - App: setup/embed/application.md
   - 任务:
       - 流量管理:
           - 流量切分: tasks/traffic/canary/canary.md
