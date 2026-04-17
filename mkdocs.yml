@@ -13,8 +13,20 @@ theme:
   logo: assets/static/logo.png
   font: false
   palette:
-    scheme: default
-    primary: teal
+    - scheme: default
+      media: "(prefers-color-scheme: light)"
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/weather-night
+        name: 切换到暗色模式
+    - scheme: slate
+      media: "(prefers-color-scheme: dark)"
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/weather-sunny
+        name: 切换到亮色模式
   features:
     - navigation.tabs
     - navigation.sections
@@ -44,35 +56,80 @@ markdown_extensions:
 plugins:
   - search:
       lang: [en, zh]
+  - i18n:
+      docs_structure: suffix
+      fallback_to_default: true
+      reconfigure_material: true
+      languages:
+        - locale: zh
+          name: 简体中文
+          default: true
+          build: true
+          site_name: Dubbo Inherent Mesh for Kubernetes
+          nav_translations:
+            Home: 首页
+            Concepts: 概念
+            Overview: 概述
+            Introduction: 引言
+            Traffic Management: 流量管理
+            Security: 安全
+            Observability: 可观察性
+            Installation: 安装
+            Embedded Program: 嵌入程序
+            Tasks: 任务
+            Traffic Splitting: 流量切分
+            Mutual TLS: 双向 TLS
+            Operations: 运维
+            Release Notes: 版本更新
+            Reference: 参考
+        - locale: en
+          name: English
+          build: true
+          site_name: Dubbo Inherent Mesh for Kubernetes
+          nav_translations:
+            概念: Concepts
+            概述: Overview
+            引言: Introduction
+            流量管理: Traffic Management
+            安全: Security
+            可观察性: Observability
+            安装: Installation
+            嵌入程序: Embedded Program
+            任务: Tasks
+            流量切分: Traffic Splitting
+            双向 TLS: Mutual TLS
+            运维: Operations
+            版本更新: Release Notes
+            参考: Reference
 
 extra_css:
-  - assets/custom.css
+  - assets/custom.css?v=20260417-header-controls
 
 extra_javascript:
-  - assets/custom.js
+  - assets/custom.js?v=20260417-header-controls
 
 nav:
-  - 概述:
-    - overview/index.md
+  - Home: index.md
   - 概念:
-      - 流量管理: concepts/traffic-management.md
-      - 安全: concepts/security.md
-      - 可观察性: concepts/observability.md
-  - 安装指南:
-    - dubboctl: setup/install/dubboctl.md
-    - helm: setup/install/helm.md
+      - 概述:
+          - 引言: overview/index.md
+      - 概念:
+          - 流量管理: concepts/traffic-management.md
+          - 安全: concepts/security.md
+          - 可观察性: concepts/observability.md
+  - 安装:
+      - Dubboctl: setup/install/dubboctl.md
+      - Helm: setup/install/helm.md
   - 嵌入程序: application/embed/index.md
   - 任务:
       - 流量管理:
-           - 流量路由:
-               - 权重: tasks/traffic/canary/canary.md
-           - Ingress:
-               - Kubernetes Gateway API: tasks/traffic/ingress/gateway-api.md
+          - 流量切分: tasks/traffic/canary/canary.md
+          - Kubernetes Gateway API: tasks/traffic/ingress/gateway-api.md
       - 安全:
           - 双向 TLS: tasks/security/mtls.md
       - 可观察性: tasks/observability/index.md
-  - 运维（待补）: operation.md
-  - 版本（待补）: latest/release/release.md
-  - 参考（待补）: reference.md
+  - 运维: operation/index.md
+  - 版本更新: latest/release/index.md
+  - 参考: reference/index.md
 
-copyright: Copyright © 2026 The ADK Team.
+copyright: Copyright © 2026 The Kdubbo Team.
