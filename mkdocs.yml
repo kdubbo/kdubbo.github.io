@@ -18,14 +18,14 @@ theme:
       primary: teal
       accent: teal
       toggle:
-        icon: material/weather-night
+        icon: material/light-switch-off
         name: 切换到暗色模式
     - scheme: slate
       media: "(prefers-color-scheme: dark)"
       primary: teal
       accent: teal
       toggle:
-        icon: material/weather-sunny
+        icon: material/light-switch
         name: 切换到亮色模式
   features:
     - navigation.tabs
@@ -95,7 +95,6 @@ plugins:
             安全: Security
             可观察性: Observability
             安装: Installation
-            嵌入程序: Embedded Program
             任务: Tasks
             流量切分: Traffic Splitting
             双向 TLS: Mutual TLS
@@ -104,10 +103,10 @@ plugins:
             参考: Reference
 
 extra_css:
-  - assets/custom.css?v=20260417-toc-readable-spacing
+  - assets/custom.css?v=20260423-shield-icon
 
 extra_javascript:
-  - assets/custom.js?v=20260417-search-click-open
+  - assets/custom.js?v=20260423-code-panel
 
 nav:
   - Home: index.md
@@ -120,7 +119,6 @@ nav:
   - 安装:
       - Dubboctl: setup/install/dubboctl.md
       - Helm: setup/install/helm.md
-      - App: setup/embed/application.md
   - 任务:
       - 流量管理:
           - 流量切分: tasks/traffic/canary/canary.md
@@ -132,4 +130,4 @@ nav:
   - 版本更新: latest/release/index.md
   - 参考: reference/index.md
 
-copyright: Copyright © 2026 The Kdubbo Team.
+copyright: Copyright © 2026 The Apache Kdubbo Team.

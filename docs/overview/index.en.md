@@ -4,12 +4,6 @@ Dubbo Inherent Mesh is a proxyless model introduced in 2025. In this model, the 
 
 The Dubbo agent initializes communication with the control plane. The agent does not receive application traffic as a data-plane proxy; it retrieves and rotates the certificates used by data-plane traffic.
 
-## Architecture Overview
-
-<p align="center">
-  <img src="../../static/architecture.svg" width="400">
-</p>
-
 ## Quick Start
 Go to the Dubbo release page, download the installation package for your operating system, and get the latest version for Linux or macOS:
 

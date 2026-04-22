@@ -4,12 +4,12 @@
   {{ super() }}
   <style>
     html[data-md-color-scheme="default"] {
-      background: #ffffff;
+      background: #f5fbf8;
       color-scheme: light;
     }
 
     html[data-md-color-scheme="slate"] {
-      background: #09090b;
+      background: #020807;
       color-scheme: dark;
     }
   </style>
@@ -38,7 +38,7 @@
       };
       var syncHtml = function (value) {
         applyColor(document.documentElement, value);
-        document.documentElement.style.background = value.scheme === "slate" ? "#09090b" : "#ffffff";
+        document.documentElement.style.background = value.scheme === "slate" ? "#020807" : "#f5fbf8";
         document.documentElement.style.colorScheme = value.scheme === "slate" ? "dark" : "light";
       };
 
