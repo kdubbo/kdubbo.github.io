@@ -28,11 +28,12 @@ spec:
     - from: node.name
 ```
 
-## 虚拟路由
+## 网格服务
 
+使用虚拟拓扑，根据区域优先级从上往下匹配
 ```yaml
 apiVersion: networking.dubbo.apache.org/v1alpha3
-kind: VirtualRoute
+kind: MeshService
 metadata:
   name: order-service-routing
   namespace: default
@@ -44,7 +45,8 @@ spec:
   topologyRef:
     Kind: VitrualTopology
     name: topology-defaults
-  # TODO route
+  rules:
+  // TODO
   fallback:
   - topology:
       region: ["cn-hangzhou","cn-beijing"]
@@ -56,6 +58,20 @@ spec:
       global: true
 ```
 
+```yaml
+apiVersion: networking.dubbo.apache.org/v1alpha3
+kind: MeshService
+metadata:
+  name: order-service-routing
+  namespace: default
+spec:
+  targetRef:
+    kind: Service
+    name: order-service
+    port: 8080
+  rules:
+
+```
 
 ## 网关
 
@@ -90,11 +106,11 @@ spec:
 ```yaml
 trafficPolicy:
   loadBalancer:
-  algorithm: CONSISTENT_HASH
-  consistentHash:
-    hashOn:
-      header: x-user-id
-    minimumRingSize: 1024
+    algorithm: CONSISTENT_HASH
+    consistentHash:
+      hashOn:
+        header: x-user-id
+      minimumRingSize: 1024
 ```
 
 ## 流量弹性与测试
@@ -125,5 +141,4 @@ retry:
 circuitBreaker:
   maxConnections: 512
   maxPendingRequests: 256
-```
 ```

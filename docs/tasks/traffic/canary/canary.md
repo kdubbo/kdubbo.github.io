@@ -1,26 +1,18 @@
 # 流量切分
-本示例演示如何使用 DSM 部署支持的 gRPC 应用程序进行流量切分。
-
-## 概述
-
-- **提供者**：一个 gRPC 服务器，接收请求（端口 17070），并部署了多个版本（v1/v2），以展示灰色发布场景。
-- **消费者**：一个 gRPC 客户端，向提供者服务发送请求，并暴露一个测试服务器（端口 17171），用于通过 `grpcurl` 管理流量。
-
-这两个服务都使用原生 gRPC xDS 客户端通过 `dubbo-proxy` 连接到 Dubbo 控制平面，从而实现服务发现、负载均衡和流量管理。
+本示例演示如何使用应用程序进行流量切分。
 
 ## 前提条件
 
 1. 已安装 Dubbo 控制平面的 Kubernetes 集群
 2. 已配置 kubectl 以访问集群
-3. grpcurl（可选，用于测试）
 
 ## 部署
 
 ### 1. 创建命名空间
 
 ```bash
-kubectl create ns grpc-app
-kubectl label namespace grpc-app dubbo-injection=enabled
+kubectl create ns app
+kubectl label namespace app dubbo-injection=enabled
 ```
 
 ### 2. 部署服务
