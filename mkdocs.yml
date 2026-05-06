@@ -1,4 +1,4 @@
-site_name: Dubbo Inherent Mesh for Kubernetes
+site_name: Apache Kdubbo Inherent Mesh
 site_url: https://kdubbo.github.io/
 use_directory_urls: true
 
@@ -13,20 +13,9 @@ theme:
   logo: assets/static/logo.png
   font: false
   palette:
-    - scheme: default
-      media: "(prefers-color-scheme: light)"
-      primary: teal
-      accent: teal
-      toggle:
-        icon: material/light-switch-off
-        name: 切换到暗色模式
-    - scheme: slate
-      media: "(prefers-color-scheme: dark)"
-      primary: teal
-      accent: teal
-      toggle:
-        icon: material/light-switch
-        name: 切换到亮色模式
+    scheme: default
+    primary: teal
+    accent: teal
   features:
     - navigation.tabs
     - navigation.sections
@@ -65,7 +54,7 @@ plugins:
           name: 简体中文
           default: true
           build: true
-          site_name: Dubbo Inherent Mesh for Kubernetes
+          site_name: Apache Kdubbo Inherent Mesh
           nav_translations:
             Home: 首页
             Concepts: 概述
@@ -74,11 +63,11 @@ plugins:
             Introduction: 引言
             Traffic Management: 流量管理
             Security: 安全
-            Observability: 可观察性
+            Observability: 可观测性
             Installation: 安装
             Embedded Program: 嵌入程序
             Tasks: 任务
-            Traffic Splitting: 流量切分
+            Traffic Splitting: 流量转移
             Mutual TLS: 双向 TLS
             Operations: 运维
             Release Notes: 版本更新
@@ -86,14 +75,14 @@ plugins:
         - locale: en
           name: English
           build: true
-          site_name: Dubbo Inherent Mesh for Kubernetes
+          site_name: Apache Kdubbo Inherent Mesh
           nav_translations:
             概述: Overview
             引言: Introduction
             基本概念: Basic Concepts
             流量管理: Traffic Management
             安全: Security
-            可观察性: Observability
+            可观测性: Observability
             安装: Installation
             任务: Tasks
             流量切分: Traffic Splitting
@@ -115,17 +104,18 @@ nav:
       - 基本概念:
           - 流量管理: concepts/traffic-management.md
           - 安全: concepts/security.md
-          - 可观察性: concepts/observability.md
+          - 可观测性: concepts/observability.md
   - 安装:
       - Dubboctl: setup/install/dubboctl.md
       - Helm: setup/install/helm.md
   - 任务:
       - 流量管理:
-          - 流量切分: tasks/traffic/canary/canary.md
-          - Kubernetes Gateway API: tasks/traffic/ingress/gateway-api.md
+          - 流量转移: tasks/traffic/canary/canary.md
+          - 网关: tasks/traffic/ingress/gateway-api.md
       - 安全:
-          - 双向 TLS: tasks/security/mtls.md
-      - 可观察性: tasks/observability/index.md
+          - mTLS: tasks/security/mtls.md
+      - 可观测性:
+          - 指标: tasks/observability/metrics/metrics.md
   - 运维: operation/index.md
   - 版本更新: latest/release/index.md
   - 参考: reference/index.md

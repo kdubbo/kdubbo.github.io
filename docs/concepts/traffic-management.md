@@ -1,77 +1,64 @@
-> 当前处于设计阶段
-## 虚拟拓扑
-
-**虚拟拓扑**是用于定义微服务集群物理与逻辑边界的分级模型。从宏观到微观的四层维度，描述服务在分布式系统中的空间位置，为流量路由、近端访问及容灾调度提供决策依据，从一个大的范围逐渐缩小范围定位具体的服务，有以下四个字段：
-
-- `region` 代表最高层级的地理区域（如 cn-hangzhou）。主要用于跨地域的流量分发与容灾策略。
-- `zone` 代表地域内的独立基础设施（如可用区 A/B）。通过将流量限制在同一可用区内，可有效降低网络延迟并提升可用性。
-- `cluster` 在多集群（Multi-cluster）架构中定义的逻辑边界。用于区分不同的 Kubernetes 集群或 Dubbo 逻辑集群。
-- `node` 最细粒度的计算单元。指代具体的物理机或虚拟机，是服务的最终承载点。
-
-```yaml
-apiVersion: networking.dubbo.apache.org/v1alpha3
-kind: VitrualTopology 
-metadata:
-  name: topology-defaults
-spec:
-  sources:
-    region:
-    - key: topology.kubernetes.io/region
-      from: node.label
-    zone:
-    - key: topology.kubernetes.io/zone
-      from: node.label
-    cluster:
-    - key: topology.remote.dubbo.apache.org/cluster
-      from: node.label
-    node:
-    - from: node.name
-```
+Dubbo 的流量路由规则以 `MeshService` 资源对象为核心，可将其理解为 Mesh 层面的 Kubernetes Service。它在服务级别提供熔断、限流、超时、重试等治理能力，支持金丝雀发布和基于流量比例的分阶段发布，并内置故障恢复机制，用于应对服务或网络异常。
 
 ## 网格服务
 
-使用虚拟拓扑，根据区域优先级从上往下匹配
+### hosts 字段
+
+`hosts` 字段指定目标主机，可以是用户直接设定，也可以由路由规则决定，代表客户端发请求时使用的一个或多个地址。主机名可以是 IP 地址、DNS 名称，或平台相关的简称（例如 Kubernetes 服务的短名称），无论哪种形式，最终都会隐式或显式地解析为一个完全限定域名（FQDN）。也可以使用通配符（*）前缀，匹配一批服务并统一设置路由规则。
+
+`hosts` 字段不必是 Dubbo 服务注册表中的真实条目，它只是虚拟的目标地址，因此也可以用来定义不在网格内部的虚拟主机。
 ```yaml
 apiVersion: networking.dubbo.apache.org/v1alpha3
 kind: MeshService
 metadata:
-  name: order-service-routing
+  name: foo-service-routing
   namespace: default
 spec:
-  targetRef:
-    kind: Service
-    name: order-service
-    port: 8080
-  topologyRef:
-    Kind: VitrualTopology
-    name: topology-defaults
-  rules:
-  // TODO
-  fallback:
-  - topology:
-      region: ["cn-hangzhou","cn-beijing"]
-  - topology:
-      zone: 
-      - same
-      - vip
-  - topology:
-      global: true
+  hosts:
+    - foo.default.svc.cluster.local
+  routes:
+  - service:
+      - name: foo-1
+        host: foo.default.svc.cluster.local
+        port:
+          number: 9080
 ```
 
+### match 字段
+敬请期待
+
+### trafficPolicy 字段
+<details>
+  <summary>服务级别</summary>
 ```yaml
-apiVersion: networking.dubbo.apache.org/v1alpha3
-kind: MeshService
-metadata:
-  name: order-service-routing
-  namespace: default
-spec:
-  targetRef:
-    kind: Service
-    name: order-service
-    port: 8080
-  rules:
 
 ```
+</details>
+<details>
+  <summary>全局级别</summary>
+```yaml
+
+```
+</details>
+
+
+### 负载均衡
+敬请期待
+
+### 超时
+敬请期待
+
+### 重试
+敬请期待
+
+### 限流
+敬请期待
+
+### 熔断器
+敬请期待
+
+### 故障注入
+敬请期待
 
 ## 网关
 
@@ -100,45 +87,4 @@ spec:
           port: 8080
 ```
 
-## 流量策略
 
-###  负载均衡
-```yaml
-trafficPolicy:
-  loadBalancer:
-    algorithm: CONSISTENT_HASH
-    consistentHash:
-      hashOn:
-        header: x-user-id
-      minimumRingSize: 1024
-```
-
-## 流量弹性与测试
-
-### 超时
-```yaml
-timeout: 30s
-```
-
-### 重试
-```yaml
-retry:
-  maxRetries: 3
-  retryOn: 
-  - connect-failure
-  - refused-stream
-  - 502
-  - 503
-  - 504
-  perRetryTimeout: 8s
-  backoff:
-    baseInterval: 500ms
-    maxInterval: 10s
-```
-
-### 断路器
-```yaml
-circuitBreaker:
-  maxConnections: 512
-  maxPendingRequests: 256
-```

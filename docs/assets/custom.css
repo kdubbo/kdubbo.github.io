@@ -1,52 +1,35 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,200..700,0..1,-50..200&family=Nunito+Sans:wght@800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
   --md-text-font: "IBM Plex Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
   --md-ui-font: "IBM Plex Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
   --md-code-font: "JetBrains Mono", "Fira Code", Consolas, monospace;
   
-  /* Enterprise Light Theme */
-  --mesh-bg: #f3f9ff;
-  --mesh-bg-deep: #d8ecff;
-  --mesh-surface: rgba(255, 255, 255, 0.72);
-  --mesh-border: rgba(82, 142, 204, 0.2);
-  --mesh-grid-line: rgba(84, 147, 216, 0.13);
-  --mesh-text-main: #07110f;
-  --mesh-text-muted: #53625f;
-  --mesh-accent: #087669;
-  --mesh-accent-hover: #075e54;
-  --mesh-gradient-start: #087669;
-  --mesh-gradient-end: #0b6fa4;
-  --mesh-scan-edge: rgba(80, 153, 224, 0);
-  --mesh-scan-body: rgba(80, 153, 224, 0.1);
+  /* Pure Light Theme for Frontend */
+  --mesh-bg: #FFFFFF;
+  --mesh-bg-deep: #F8FAFC;
+  --mesh-svg-accent: #60A5FA;
+  --mesh-svg-accent-light: rgba(96, 165, 250, 0.15);
+  --mesh-surface: rgba(255, 255, 255, 0.85);
+  --mesh-border: rgba(46, 125, 82, 0.12);
+  --mesh-grid-line: rgba(46, 125, 82, 0.08);
+  --mesh-text-main: #18241e;
+  --mesh-text-muted: #546a62;
+  --mesh-accent: #277b54;
+  --mesh-accent-hover: #1e5c3e;
+  --mesh-gradient-start: #277b54;
+  --mesh-gradient-end: #3b9e74;
+  --mesh-scan-edge: rgba(39, 123, 84, 0);
+  --mesh-scan-body: rgba(39, 123, 84, 0.1);
   --mesh-scan-core: rgba(255, 255, 255, 0.38);
-  --mesh-teal: #087669;
+  --mesh-teal: #277b54;
 
   /* Material Theme Top Bar Overrides */
   --md-primary-fg-color: var(--mesh-bg);
   --md-primary-fg-color--light: var(--mesh-bg);
   --md-primary-fg-color--dark: var(--mesh-bg);
   --md-primary-bg-color: var(--mesh-text-main);
-  --md-primary-bg-color--light: rgba(9, 9, 11, 0.5);
-}
-
-html[data-md-color-scheme="slate"] {
-  /* Enterprise Dark Theme */
-  --mesh-bg: #020807;
-  --mesh-bg-deep: #071412;
-  --mesh-surface: rgba(5, 17, 15, 0.74);
-  --mesh-border: rgba(94, 234, 212, 0.18);
-  --mesh-grid-line: rgba(94, 234, 212, 0.2);
-  --mesh-text-main: #f3fffc;
-  --mesh-text-muted: #9eb4ae;
-  --mesh-accent: #54dbc9;
-  --mesh-accent-hover: #86f5e7;
-  --mesh-gradient-start: #86f5e7;
-  --mesh-gradient-end: #5ab8ff;
-  --mesh-scan-edge: rgba(94, 234, 212, 0);
-  --mesh-scan-body: rgba(94, 234, 212, 0.16);
-  --mesh-scan-core: rgba(198, 255, 246, 0.26);
-  --mesh-teal: #54dbc9;
+  --md-primary-bg-color--light: rgba(24, 36, 30, 0.5);
 }
 
 /* --- 恢复文档标准布局 --- */
@@ -54,14 +37,14 @@ html[data-md-color-scheme="slate"] {
   max-width: 90rem !important; /* 扩大整体网格宽度，使得标签页、侧边栏、正文完全对齐且更宽敞 */
 }
 
-html,
-body,
-.md-container,
-.md-main,
-.md-main__inner,
-.md-content,
-.md-content__inner {
-  background: var(--mesh-bg) !important;
+/* --- 仅在文档页面启用护眼模式 --- */
+body:not(:has(.mesh-landing)),
+body:not(:has(.mesh-landing)) .md-container,
+body:not(:has(.mesh-landing)) .md-main,
+body:not(:has(.mesh-landing)) .md-main__inner,
+body:not(:has(.mesh-landing)) .md-content,
+body:not(:has(.mesh-landing)) .md-content__inner {
+  background: #FAF9F6 !important;
 }
 
 body {
@@ -70,11 +53,21 @@ body {
 
 /* --- 深度重构顶栏 (Header) 与标签页 (Tabs) --- */
 .md-header {
-  background-color: rgba(245, 251, 248, 0.86) !important;
+  background-color: transparent !important;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  color: var(--mesh-text-main) !important;
+  box-shadow: none !important;
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
+}
+
+.md-header[data-md-state="shadow"],
+[data-md-state="shadow"] .md-header,
+.md-header--shadow {
+  background-color: rgba(250, 249, 246, 0.9) !important;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  color: var(--mesh-text-main) !important;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05) !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.04) !important;
 }
 
 html[data-md-color-scheme="slate"] .md-header {
@@ -447,6 +440,52 @@ html[data-md-color-scheme="slate"] .md-typeset pre code {
   display: none;
 }
 
+body:has(.mesh-landing) {
+  background:
+    radial-gradient(circle at 15% 50%, rgba(96, 165, 250, 0.08), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.06), transparent 25%),
+    radial-gradient(circle at 50% 80%, rgba(147, 197, 253, 0.08), transparent 30%),
+    linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%) !important;
+  background-attachment: fixed !important;
+}
+
+body:has(.mesh-landing)::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
+  -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
+}
+
+body:has(.mesh-landing) .md-container,
+body:has(.mesh-landing) .md-main,
+body:has(.mesh-landing) .md-main__inner,
+body:has(.mesh-landing) .md-content,
+body:has(.mesh-landing) .md-footer,
+body:has(.mesh-landing) .md-footer-meta,
+body:has(.mesh-landing) .md-footer-nav,
+body:has(.mesh-landing) .md-copyright {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+body:has(.mesh-landing) .md-tabs {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(0,0,0,0.05) !important;
+}
+
+body:has(.mesh-landing) .md-header:not([data-md-state="shadow"]) {
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
 .mesh-landing {
   position: relative;
   isolation: isolate;
@@ -456,28 +495,12 @@ html[data-md-color-scheme="slate"] .md-typeset pre code {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  font-family: var(--md-text-font);
+  font-family: 'Plus Jakarta Sans', var(--md-text-font);
   overflow: hidden;
   padding: clamp(3.2rem, 7vw, 5.5rem) 1rem clamp(4rem, 7vw, 5.75rem);
   margin: 0 calc(50% - 50vw);
   border-radius: 0;
-  background:
-    repeating-linear-gradient(
-      154deg,
-      rgba(255, 255, 255, 0.34) 0 0.08rem,
-      rgba(94, 155, 225, 0.08) 0.08rem 0.2rem,
-      transparent 0.2rem 6.8rem
-    ),
-    repeating-linear-gradient(
-      154deg,
-      transparent 0 12rem,
-      rgba(255, 255, 255, 0.28) 12.1rem,
-      rgba(116, 174, 238, 0.07) 12.35rem,
-      transparent 13.4rem
-    ),
-    radial-gradient(circle at 14% 6%, rgba(255, 255, 255, 0.95) 0, rgba(255, 255, 255, 0.55) 24%, rgba(255, 255, 255, 0) 54%),
-    radial-gradient(circle at 82% 78%, rgba(138, 190, 247, 0.26) 0, rgba(138, 190, 247, 0) 42%),
-    linear-gradient(155deg, #fbfdff 0%, #f4faff 32%, #e8f5ff 62%, #cfe7ff 100%);
+  background: transparent;
 }
 
 html[data-md-color-scheme="slate"] .mesh-landing {
@@ -486,59 +509,13 @@ html[data-md-color-scheme="slate"] .mesh-landing {
 }
 
 .mesh-bg-elements {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.mesh-bg-elements::before {
-  content: '';
-  position: absolute;
-  inset: -18% -42%;
-  pointer-events: none;
-}
-
-.mesh-bg-elements::before {
-  background:
-    repeating-linear-gradient(
-      154deg,
-      rgba(255, 255, 255, 0.16) 0 0.12rem,
-      rgba(92, 151, 219, 0.05) 0.12rem 0.28rem,
-      transparent 0.28rem 9rem
-    );
-  opacity: 0.8;
-  z-index: 0;
+  display: none;
 }
 
 html[data-md-color-scheme="slate"] .mesh-bg-elements::before {
   background:
     linear-gradient(115deg, transparent 0 31%, rgba(94, 234, 212, 0.12) 31% 31.5%, transparent 31.5% 100%),
     linear-gradient(115deg, transparent 0 66%, rgba(90, 184, 255, 0.1) 66% 66.4%, transparent 66.4% 100%);
-}
-
-.mesh-scan {
-  position: absolute;
-  top: -22%;
-  bottom: -22%;
-  left: 0;
-  width: clamp(7rem, 13vw, 14rem);
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    var(--mesh-scan-edge) 20%,
-    var(--mesh-scan-body) 38%,
-    var(--mesh-scan-core) 50%,
-    var(--mesh-scan-body) 62%,
-    var(--mesh-scan-edge) 80%,
-    transparent 100%
-  );
-  opacity: 0.54;
-  transform: translate3d(-18vw, 0, 0) skewX(-17deg);
-  animation: mesh-pulse-scan 2.8s linear infinite;
-  z-index: 2;
-  pointer-events: none;
 }
 
 /* 网格背景 — 透视平铺（地板效果）+ 从左到右漂浮 */
@@ -571,18 +548,9 @@ html[data-md-color-scheme="slate"] .mesh-grid {
   100% { background-position: 4rem 0; }
 }
 
-@keyframes mesh-pulse-scan {
-  0% {
-    transform: translate3d(-18vw, 0, 0) skewX(-17deg);
-  }
-  100% {
-    transform: translate3d(118vw, 0, 0) skewX(-17deg);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .mesh-grid,
-  .mesh-scan {
+  .mesh-bg-elements::before {
     animation: none;
   }
 }
@@ -602,7 +570,7 @@ html[data-md-color-scheme="slate"] .mesh-grid {
 .mesh-title {
   font-size: 2.45rem !important;
   font-family: "Nunito Sans", "PingFang SC", "Microsoft YaHei", sans-serif !important;
-  font-weight: 900 !important;
+  font-weight: 700 !important;
   line-height: 1.04 !important;
   letter-spacing: 0.015em !important;
   color: #111816 !important;
@@ -721,85 +689,123 @@ html[data-md-color-scheme="slate"] .mesh-btn-primary {
   border-color: var(--mesh-text-muted);
 }
 
-.mesh-features {
+/* --- ENTERPRISE LANDING PAGE DESIGN: SHOWCASE LAYOUT (3-COLUMN) --- */
+.mesh-showcase {
   position: relative;
   z-index: 1;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 2rem;
   width: 100%;
-  max-width: 1000px;
-  margin-top: 6rem;
+  max-width: 1200px;
+  margin: 6rem auto 4rem auto;
 }
 
-.mesh-feature-card {
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  padding: 1rem 0;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+.mesh-showcase-column {
+  flex: 1;
+  min-width: 280px;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  align-items: center;
-  text-align: center;
-}
-
-.mesh-feature-card:hover {
-  transform: translateY(-4px);
-}
-
-html[data-md-color-scheme="slate"] .mesh-feature-card:hover {
-  box-shadow: none;
-}
-
-.mesh-feature-icon {
-  width: 2.9rem;
-  height: 2.9rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  gap: 1.5rem;
   background: transparent;
-  color: var(--mesh-text-main);
-  border-radius: 0;
-}
-
-.material-symbols-outlined {
-  direction: ltr;
-  display: inline-block;
-  font-family: 'Material Symbols Outlined';
-  font-feature-settings: 'liga';
-  font-size: 2.25rem;
-  font-style: normal;
-  font-variation-settings: 'FILL' 0, 'wght' 420, 'GRAD' 0, 'opsz' 36;
-  font-weight: normal;
-  letter-spacing: normal;
-  line-height: 1;
-  text-transform: none;
-  white-space: nowrap;
-  word-wrap: normal;
-  -webkit-font-feature-settings: 'liga';
-  -webkit-font-smoothing: antialiased;
-}
-
-html[data-md-color-scheme="slate"] .mesh-feature-icon {
-  background: transparent;
-}
-
-.mesh-feature-card h3 {
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: var(--mesh-text-main);
-  margin: 0;
   border: none;
+  border-radius: 0;
+  padding: 1rem 0.5rem;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  transition: transform 0.3s ease;
+  position: relative;
+  overflow: visible;
+}
+
+.mesh-showcase-column:hover {
+  transform: translateY(-8px);
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}
+
+.mesh-showcase-image {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background: transparent;
   padding: 0;
 }
 
-.mesh-feature-card p {
-  font-size: 0.9375rem;
-  color: var(--mesh-text-muted);
-  line-height: 1.6;
-  margin: 0;
+.mesh-showcase-image svg {
+  max-width: 90%;
+  margin: 0 auto;
+  filter: drop-shadow(0 12px 24px rgba(59, 130, 246, 0.12));
+}
+
+.mesh-showcase-image:hover {
+  transform: none;
+}
+
+.mesh-showcase-image img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.mesh-showcase-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 0.5rem;
+}
+
+.mesh-showcase-title {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  color: var(--mesh-text-main) !important;
+  margin-top: 0 !important;
+  margin-bottom: 0.6rem !important;
+  line-height: 1.25 !important;
+  letter-spacing: -0.01em !important;
+  text-align: center !important;
+}
+
+.mesh-showcase-desc {
+  font-family: 'Plus Jakarta Sans', "PingFang SC", "Microsoft YaHei", sans-serif !important;
+  font-size: 0.875rem !important;
+  color: var(--mesh-text-muted) !important;
+  line-height: 1.6 !important;
+  margin: 0 !important;
+  text-align: center !important;
+  word-break: normal !important;
+}
+
+@media (max-width: 960px) {
+  .mesh-showcase {
+    flex-direction: column;
+    gap: 4rem;
+  }
+}
+
+/* --- Footer 样式覆盖，同步亮色模式 --- */
+.md-footer,
+.md-footer-meta {
+  background-color: var(--mesh-bg) !important;
+}
+
+body:has(.mesh-landing) .md-footer,
+body:has(.mesh-landing) .md-footer-meta {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.md-footer-meta .md-copyright,
+.md-footer-meta .md-copyright__highlight {
+  color: var(--mesh-text-muted) !important;
+}
+
+.md-footer-meta .md-copyright a {
+  color: var(--mesh-accent) !important;
 }
