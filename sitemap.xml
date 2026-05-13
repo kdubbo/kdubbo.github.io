@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+        <loc>https://kdubbo.github.io/</loc>
+        <lastmod>2026-05-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://kdubbo.github.io/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://kdubbo.github.io/en/"/>
+    </url>
+    <url>
+        <loc>https://kdubbo.github.io/concepts/observability/</loc>
+        <lastmod>2026-05-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://kdubbo.github.io/concepts/observability/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://kdubbo.github.io/en/concepts/observability/"/>
+    </url>
+    <url>
+        <loc>https://kdubbo.github.io/concepts/security/</loc>
+        <lastmod>2026-05-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://kdubbo.github.io/concepts/security/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://kdubbo.github.io/en/concepts/security/"/>
+    </url>
+    <url>
+        <loc>https://kdubbo.github.io/concepts/traffic-management/</loc>
+        <lastmod>2026-05-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://kdubbo.github.io/concepts/traffic-management/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://kdubbo.github.io/en/concepts/traffic-management/"/>
+    </url>
+    <url>
+        <loc>https://kdubbo.github.io/latest/release/</loc>
+        <lastmod>2026-05-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://kdubbo.github.io/latest/release/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://kdubbo.github.io/en/latest/release/"/>
+    </url>
+    <url>
+        <loc>https://kdubbo.github.io/operation/</loc>
+        <lastmod>2026-05-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://kdubbo.github.io/operation/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://kdubbo.github.io/en/operation/"/>
+    </url>
+    <url>
+        <loc>https://kdubbo.github.io/overview/</loc>
+        <lastmod>2026-05-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://kdubbo.github.io/overview/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://kdubbo.github.io/en/overview/"/>
+    </url>
+    <url>
+        <loc>https://kdubbo.github.io/reference/</loc>
+        <lastmod>2026-05-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://kdubbo.github.io/reference/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://kdubbo.github.io/en/reference/"/>
+    </url>
+    <url>
+        <loc>https://kdubbo.github.io/setup/install/dubboctl/</loc>
+        <lastmod>2026-05-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://kdubbo.github.io/setup/install/dubboctl/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://kdubbo.github.io/en/setup/install/dubboctl/"/>
+    </url>
+    <url>
+        <loc>https://kdubbo.github.io/setup/install/helm/</loc>
+        <lastmod>2026-05-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://kdubbo.github.io/setup/install/helm/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://kdubbo.github.io/en/setup/install/helm/"/>
+    </url>
+    <url>
+        <loc>https://kdubbo.github.io/tasks/observability/metrics/metrics/</loc>
+        <lastmod>2026-05-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://kdubbo.github.io/tasks/observability/metrics/metrics/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://kdubbo.github.io/en/tasks/observability/metrics/metrics/"/>
+    </url>
+    <url>
+        <loc>https://kdubbo.github.io/tasks/security/mtls/</loc>
+        <lastmod>2026-05-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://kdubbo.github.io/tasks/security/mtls/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://kdubbo.github.io/en/tasks/security/mtls/"/>
+    </url>
+    <url>
+        <loc>https://kdubbo.github.io/tasks/traffic/canary/canary/</loc>
+        <lastmod>2026-05-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://kdubbo.github.io/tasks/traffic/canary/canary/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://kdubbo.github.io/en/tasks/traffic/canary/canary/"/>
+    </url>
+    <url>
+        <loc>https://kdubbo.github.io/tasks/traffic/ingress/gateway-api/</loc>
+        <lastmod>2026-05-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://kdubbo.github.io/tasks/traffic/ingress/gateway-api/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://kdubbo.github.io/en/tasks/traffic/ingress/gateway-api/"/>
+    </url>
+    <url>
+        <loc>https://kdubbo.github.io/en/</loc>
+        <lastmod>2026-05-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://kdubbo.github.io/en/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://kdubbo.github.io/"/>
+    </url>
+    <url>
+        <loc>https://kdubbo.github.io/en/concepts/observability/</loc>
+        <lastmod>2026-05-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://kdubbo.github.io/en/concepts/observability/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://kdubbo.github.io/concepts/observability/"/>
+    </url>
+    <url>
+        <loc>https://kdubbo.github.io/en/concepts/security/</loc>
+        <lastmod>2026-05-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://kdubbo.github.io/en/concepts/security/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://kdubbo.github.io/concepts/security/"/>
+    </url>
+    <url>
+        <loc>https://kdubbo.github.io/en/concepts/traffic-management/</loc>
+        <lastmod>2026-05-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://kdubbo.github.io/en/concepts/traffic-management/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://kdubbo.github.io/concepts/traffic-management/"/>
+    </url>
+    <url>
+        <loc>https://kdubbo.github.io/en/latest/release/</loc>
+        <lastmod>2026-05-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://kdubbo.github.io/en/latest/release/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://kdubbo.github.io/latest/release/"/>
+    </url>
+    <url>
+        <loc>https://kdubbo.github.io/en/operation/</loc>
+        <lastmod>2026-05-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://kdubbo.github.io/en/operation/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://kdubbo.github.io/operation/"/>
+    </url>
+    <url>
+        <loc>https://kdubbo.github.io/en/overview/</loc>
+        <lastmod>2026-05-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://kdubbo.github.io/en/overview/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://kdubbo.github.io/overview/"/>
+    </url>
+    <url>
+        <loc>https://kdubbo.github.io/en/reference/</loc>
+        <lastmod>2026-05-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://kdubbo.github.io/en/reference/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://kdubbo.github.io/reference/"/>
+    </url>
+    <url>
+        <loc>https://kdubbo.github.io/en/setup/install/dubboctl/</loc>
+        <lastmod>2026-05-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://kdubbo.github.io/en/setup/install/dubboctl/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://kdubbo.github.io/setup/install/dubboctl/"/>
+    </url>
+    <url>
+        <loc>https://kdubbo.github.io/en/setup/install/helm/</loc>
+        <lastmod>2026-05-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://kdubbo.github.io/en/setup/install/helm/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://kdubbo.github.io/setup/install/helm/"/>
+    </url>
+    <url>
+        <loc>https://kdubbo.github.io/en/tasks/observability/metrics/metrics/</loc>
+        <lastmod>2026-05-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://kdubbo.github.io/en/tasks/observability/metrics/metrics/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://kdubbo.github.io/tasks/observability/metrics/metrics/"/>
+    </url>
+    <url>
+        <loc>https://kdubbo.github.io/en/tasks/security/mtls/</loc>
+        <lastmod>2026-05-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://kdubbo.github.io/en/tasks/security/mtls/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://kdubbo.github.io/tasks/security/mtls/"/>
+    </url>
+    <url>
+        <loc>https://kdubbo.github.io/en/tasks/traffic/canary/canary/</loc>
+        <lastmod>2026-05-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://kdubbo.github.io/en/tasks/traffic/canary/canary/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://kdubbo.github.io/tasks/traffic/canary/canary/"/>
+    </url>
+    <url>
+        <loc>https://kdubbo.github.io/en/tasks/traffic/ingress/gateway-api/</loc>
+        <lastmod>2026-05-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://kdubbo.github.io/en/tasks/traffic/ingress/gateway-api/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://kdubbo.github.io/tasks/traffic/ingress/gateway-api/"/>
+    </url>
+</urlset>
