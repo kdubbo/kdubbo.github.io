@@ -1,27 +1,67 @@
 # 双向 TLS
 
-本示例演示如何通过 Pod 内的 xDS 驱动进程保证服务间通信安全。xDS 是控制面向数据面下发服务发现、路由和安全策略的协议；业务容器只接收注入的 bootstrap、证书目录和环境变量，不再手写 TLS 逻辑。
+本示例说明如何让 xDS-aware gRPC 进程通过 Dubbo 控制面获得 mTLS 安全能力。xDS 是控制面向数据面下发服务发现、路由和安全策略的协议；业务进程只接入 xDS 运行时，不在业务代码里手写证书加载、TLS 握手和策略切换。
 
 ## 前提条件
 
 1. 已安装 Dubbo 控制平面的 Kubernetes 集群
 2. 已配置 `kubectl` 访问集群
 3. 已安装 `MeshService` 和 `PeerAuthentication` CRD
+4. 服务进程使用 `github.com/kdubbo/xds-api` 的 xDS gRPC 运行时
 
-## 部署示例
+## 应用接入方式
 
-```bash
-kubectl create ns app --dry-run=client -o yaml | kubectl apply -f -
-kubectl label namespace app dubbo-injection=enabled --overwrite
-kubectl apply -f samples/app/deployment.yaml
-kubectl -n app rollout status deploy/nginx-v1 --timeout=180s
-kubectl -n app rollout status deploy/nginx-v2 --timeout=180s
-kubectl -n app rollout status deploy/nginx-consumer --timeout=180s
+服务端使用 xDS 托管的 gRPC Server。`PeerAuthentication` 切到 `STRICT` 后，Server 会根据 xDS 入站 listener 切换到 mTLS。
+
+```go
+package main
+
+import (
+	"log"
+
+	xdsserver "github.com/kdubbo/xds-api/grpc/server"
+)
+
+func main() {
+	server := xdsserver.NewGRPCServer("0.0.0.0:17070", "")
+	// pb.RegisterEchoTestServiceServer(server, &echoServer{})
+	if err := server.Serve(); err != nil {
+		log.Fatal(err)
+	}
+}
 ```
 
-`dubbo-injection=enabled` 会注入 xDS 运行所需配置。`nginx-consumer` 使用 `kdubbo/dubbod` 镜像时会启动 `xclient --watch`，并持续保持 xDS stream。
+客户端使用 xDS target 发起调用。`MeshService` 下发 `DUBBO_MUTUAL` 后，Dial 会从 xDS CDS 中读取 `UpstreamTlsContext`，并通过注入的 bootstrap 证书完成 mTLS。
 
-关键注入内容：
+```go
+package client
+
+import (
+	"context"
+
+	xdsserver "github.com/kdubbo/xds-api/grpc/server"
+)
+
+func dial(ctx context.Context) error {
+	conn, err := xdsserver.DialContext(ctx, "xds:///provider.grpc-app.svc.cluster.local:17070")
+	if err != nil {
+		return err
+	}
+	defer conn.Close()
+	return nil
+}
+```
+
+## 部署要求
+
+Pod 所在命名空间需要开启注入：
+
+```bash
+kubectl create ns grpc-app --dry-run=client -o yaml | kubectl apply -f -
+kubectl label namespace grpc-app dubbo-injection=enabled --overwrite
+```
+
+注入后，业务容器会获得 xDS 和证书配置：
 
 - `GRPC_XDS_BOOTSTRAP`
 - `XDS_ADDRESS`
@@ -30,45 +70,45 @@ kubectl -n app rollout status deploy/nginx-consumer --timeout=180s
 - `DUBBO_GRPC_XDS_CREDENTIALS`
 - `/etc/dubbo/proxy` 证书挂载
 
-## 开启 mTLS
+## 下发 mTLS 策略
 
-`MeshService` 负责把出站路由和客户端 TLS 策略下发给 xDS 进程，`PeerAuthentication` 负责把服务端入站监听器切到严格 mTLS。两者同时存在后，客户端和服务端都由 xDS 配置驱动，不需要改业务代码。
+`MeshService` 负责客户端出站 TLS 策略，`PeerAuthentication` 负责服务端入站 mTLS 策略。两者同时存在后，客户端和服务端都由 xDS 配置驱动。
 
 ```bash
 cat <<EOF | kubectl apply -f -
 apiVersion: networking.dubbo.apache.org/v1alpha3
 kind: MeshService
 metadata:
-  name: nginx-mtls
-  namespace: app
+  name: provider-mtls
+  namespace: grpc-app
 spec:
   hosts:
-  - nginx.app.svc.cluster.local
+  - provider.grpc-app.svc.cluster.local
   trafficPolicy:
     tls:
       mode: DUBBO_MUTUAL
   routes:
   - service:
     - name: v1
-      host: nginx.app.svc.cluster.local
+      host: provider.grpc-app.svc.cluster.local
       labels:
         version: v1
       port:
-        number: 80
+        number: 17070
       weight: 50
     - name: v2
-      host: nginx.app.svc.cluster.local
+      host: provider.grpc-app.svc.cluster.local
       labels:
         version: v2
       port:
-        number: 80
+        number: 17070
       weight: 50
 ---
 apiVersion: security.dubbo.apache.org/v1alpha3
 kind: PeerAuthentication
 metadata:
-  name: app-strict-mtls
-  namespace: app
+  name: grpc-app-strict-mtls
+  namespace: grpc-app
 spec:
   mtls:
     mode: STRICT
@@ -77,25 +117,24 @@ EOF
 
 ## 验证
 
-查看消费者是否已经连接 xDS：
+确认客户端进程已经连接 xDS，并且请求仍然成功：
 
 ```bash
-kubectl -n app logs deploy/nginx-consumer
+kubectl -n grpc-app logs deploy/consumer
 ```
 
-日志中应能看到 `xclient` 输出目标服务和端点信息。发起请求：
+确认控制面已经生成安全 xDS 配置：
 
-```bash
-kubectl -n app exec deploy/nginx-consumer -- dubbod xclient 20 | sort | uniq -c
-```
+- CDS 中的目标 cluster 带 `UpstreamTlsContext`
+- LDS 中的入站 listener 带 `DownstreamTlsContext`
+- `DownstreamTlsContext.requireClientCertificate=true`
 
-请求成功说明策略已经通过 xDS 生效：出站集群使用 `DUBBO_MUTUAL`，入站监听器使用 `STRICT` mTLS 并验证客户端证书。
+只有 xDS-aware gRPC 进程可以验证这条安全链路。普通 HTTP 示例或只订阅 ADS 的调试客户端只能验证路由配置，不能证明实际 mTLS 握手。
 
 ## 清理
 
 ```bash
-kubectl -n app delete meshservice nginx-mtls --ignore-not-found=true
-kubectl -n app delete peerauthentication app-strict-mtls --ignore-not-found=true
-kubectl delete -f samples/app/deployment.yaml --ignore-not-found=true
-kubectl delete ns app
+kubectl -n grpc-app delete meshservice provider-mtls --ignore-not-found=true
+kubectl -n grpc-app delete peerauthentication grpc-app-strict-mtls --ignore-not-found=true
+kubectl delete ns grpc-app
 ```
